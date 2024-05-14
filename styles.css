@@ -1,0 +1,203 @@
+/* styles.css */
+
+/* Resetting default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+  }
+  
+  header {
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin-top: 1rem;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  .overview {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .overview h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .summary-boxes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .box {
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: calc(25% - 20px);
+    margin-bottom: 20px;
+  }
+  
+  .box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .leads {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .leads h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .leads-chart {
+    margin-bottom: 20px;
+  }
+  
+  .leads-details p {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  
+  .analytics {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .analytics h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .chart {
+    margin-bottom: 20px;
+  }
+  
+  .tasks {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .tasks h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .tasks ul {
+    list-style: none;
+  }
+  
+  .tasks ul li {
+    margin-bottom: 10px;
+  }
+  
+  .task-name {
+    font-weight: bold;
+  }
+  
+  .task-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  
+  .task-status.in-progress {
+    background: #ffc107;
+    color: #333;
+  }
+  
+  .task-status.completed {
+    background: #28a745;
+    color: #fff;
+  }
+  
+  .task-deadline {
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+
+/* styles.css */
+
+/* Add this media query for laptop screen sizes */
+@media (min-width: 768px) {
+    .analytics-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+  
+    .chart.monthly-leads,
+    .chart.project-progress,
+    .leads-details {
+      flex: 1; /* Let each item take equal space */
+      max-width: calc(33.33% - 20px); /* Limit the maximum width of each item */
+      margin-right: 20px; /* Add right margin for spacing */
+      box-sizing: border-box; /* Ensure padding and borders are included in the width */
+    }
+  
+    .chart.monthly-leads canvas,
+    .chart.project-progress canvas {
+      width: 100%; /* Make the canvas width 100% */
+    }
+  }
+  
+
+    .speech-toggle {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border-radius: 5px;
+      }
+      
+      .speech-toggle:hover {
+        background-color: #0056b3;
+      }
+      
+      .speech-toggle i {
+        margin-right: 5px;
+      }
+      

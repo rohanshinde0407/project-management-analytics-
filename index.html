@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Alert element for showing microphone status -->
+    <!-- Status display for microphone -->
+  <span id="micStatus">Microphone is OFF</span>
+
+  <!-- Mic alert -->
+  <div id="micAlert" style="display: none; position: fixed; top: 10px; right: 10px; background-color: rgba(0, 128, 0, 0.7); padding: 10px; border-radius: 5px; color: #fff;">
+    Microphone is ON
+  </div>
+    </div>
+    <header>
+        <h1>Project Management Dashboard</h1>
+        <button id="toggleSpeechRecognition" class="speech-toggle">
+            <i class="fas fa-microphone-alt"></i> <!-- Microphone icon -->
+            <span>Turn On Speech Recognition</span>
+        </button>
+
+        <!-- Button to toggle speech recognition -->
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Tasks</a></li>
+                <li><a href="#">Leads</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="overview">
+            <h2>Project Overview</h2>
+            <div class="summary-boxes">
+                <div class="box total-projects">
+                    <h3>Total Projects</h3>
+                    <p>30</p>
+                </div>
+                <div class="box active-projects">
+                    <h3>Active Projects</h3>
+                    <p>15</p>
+                </div>
+                <div class="box completed-projects">
+                    <h3>Completed Projects</h3>
+                    <p>15</p>
+                </div>
+                <div class="box tasks-due">
+                    <h3>Tasks Due Today</h3>
+                    <p>8</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="leads">
+            <h2>Leads</h2>
+            <div class="leads-chart">
+                <canvas id="leadsChart"></canvas>
+            </div>
+            <div class="leads-details">
+                <p>Total Leads: 50</p>
+                <p>New Leads: 12</p>
+                <p>Converted Leads: 8</p>
+            </div>
+        </section>
+
+        <section class="analytics">
+            <h2>Analytics</h2>
+            <div class="analytics-content">
+                <div class="chart monthly-leads">
+                    <h3>Monthly Leads Count</h3>
+                    <canvas id="monthlyLeadsChart"></canvas>
+                </div>
+                <div class="chart project-progress">
+                    <h3>Project Progress</h3>
+                    <canvas id="projectProgressChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="tasks">
+            <h2>Task List</h2>
+            <ul>
+                <li>
+                    <span class="task-name">Task 1</span>
+                    <span class="task-status in-progress">In Progress</span>
+                    <span class="task-deadline">Due: May 15, 2024</span>
+                </li>
+                <li>
+                    <span class="task-name">Task 2</span>
+                    <span class="task-status completed">Completed</span>
+                    <span class="task-deadline">Due: May 20, 2024</span>
+                </li>
+                <!-- Add more tasks here -->
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Project Management App</p>
+    </footer>
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script> <!-- JavaScript for chart initialization -->
+
+    <!-- Add JavaScript for Speech Recognition -->
+    <script>
+        // Function to toggle speech recognition
+        document.getElementById('toggleSpeechRecognition').addEventListener('click', toggleSpeechRecognition);
+
+        // Function to start/stop speech recognition
+        function toggleSpeechRecognition() {
+            if (!('webkitSpeechRecognition' in window)) {
+                alert("Speech recognition is not supported in this browser.");
+            } else {
+                if (!recognizing) {
+                    startRecognition();
+                } else {
+                    stopRecognition();
+                }
+            }
+        }
+
+        let recognizing = false;
+        let recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+
+        // Start speech recognition
+        function startRecognition() {
+            recognizing = true;
+            recognition.start();
+            document.getElementById('toggleSpeechRecognition').textContent = 'Turn Off Speech Recognition';
+        }
+
+        // Stop speech recognition
+        function stopRecognition() {
+            recognizing = false;
+            recognition.stop();
+            document.getElementById('toggleSpeechRecognition').textContent = 'Turn On Speech Recognition';
+        }
+
+        // Event for when speech recognition receives a result
+        recognition.onresult = function (event) {
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    let transcript = event.results[i][0].transcript;
+                    processSpeech(transcript);
+                }
+            }
+        };
+
+        // Function to process speech
+        function processSpeech(transcript) {
+            // Here you can add logic to process the user's speech and provide an answer
+            // For now, let's just display the transcript as an alert
+            alert("You said: " + transcript);
+        }
+    </script>
+</body>
+
+</html>
